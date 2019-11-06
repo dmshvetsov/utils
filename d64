@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+/**
+ * Decode base64 string and output the result into standard output
+ *
+ */
+
+let input = process.argv[2];
+let buff = Buffer.from(input, 'base64');
+let text = buff.toString('ascii');
+
+console.log(text);

@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+/**
+ * Encode input to base64 string and output the result into standard output
+ *
+ */
+
+const data = process.argv[2];
+const buff = Buffer.from(data);
+const base64data = buff.toString('base64');
+
+console.log(base64data);

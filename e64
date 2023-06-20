@@ -5,8 +5,23 @@
  *
  */
 
-const data = process.argv[2];
-const buff = Buffer.from(data);
-const base64data = buff.toString('base64');
+let data = process.argv[2]
+if (data === '-f') {
+  const fs = require('fs')
+  const path = require('path')
+  const filePath = process.argv[3]
+  if (!filePath || !filePath.length) {
+    console.error('provide file path after -f flag, e64 -f path/to/file')
+    process.exit(1)
+  }
+  try {
+    data = fs.readFileSync(path.resolve(filePath))
+  } catch (err) {
+    console.error(`cannot read file \`${filePath}\``)
+    process.exit(1)
+  }
+}
 
-console.log(base64data);
+console.log(
+  Buffer.from(data).toString('base64')
+)

@@ -5,8 +5,27 @@
  *
  */
 
+// convert date string to unix epoch
+if (process.argv[2] === '--date') {
+  if (typeof process.argv[3] === 'undefined') {
+    console.log('provide date string in format YYYY-MM-DD')
+    console.log('e.g.: timestamp --date 2023-08-31')
+    process.exit(1)
+  }
+
+  const time = new Date(process.argv[3]).getTime()
+  if (isNaN(time)) {
+    console.log('invalid date string')
+    process.exit(1)
+  }
+
+  console.log(time)
+  process.exit(0)
+}
+
 // convert unix epoch to datetime string
 const ts = Number(process.argv[2])
+
 if (isNaN(ts)) {
   console.log('invalid unix time')
   process.exit(1)
